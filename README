@@ -1,0 +1,15 @@
+Boston University Operating Systems Course
+
+I delayed putting up this GitHub repository to prevent cheating from other students basically taking my completed code. The course is no longer offered so I think it's safe now, but just in case I am not putting the original course number so it will be more difficult to Google.
+
+This assignment was to create a video server and client.
+The "video" consists of the Star Wars photos streamed from from images/ directory.
+
+Client and server communicate via network sockets. The server listens on port 7038 by default. 
+
+Server uses a threadpool to serve multiple clients. It only spawns additional worker threads when necessary, and a reaper thread runs intermittently to remove any extraneous worker threads after clients disconnect. The images are stored in a circular buffer to facilitate playing the "movie" in a loop, but clients must always receive the first frame of the movie when they connect and may choose to loop or not loop the movie played. Mutexes are used to prevent side effects from occuring due to the simultaneous asynchronous access to the buffer by multiple clients.
+
+Everything in the lib/ and include/ folders was given to us. There are some snippets of TCP and XWin code that were also given and are marked as such in the comments. 
+
+To compile, run make in the root directory. 
+There are multiple required libraries, some of which are not in the include/ directory so be sure to take a look at the Makefile to verify that those libraries exist on your system.
